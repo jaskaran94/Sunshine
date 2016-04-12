@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.android.sunshine.app" >
 
     <!-- This permission is necessary in order for Sunshine to perform network access. -->
     <uses-permission android:name="android.permission.INTERNET" />
-
-    <!-- check network state -->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <!-- Permissions required by the sync adapter -->
     <uses-permission
@@ -16,20 +14,23 @@
     <uses-permission
         android:name="android.permission.AUTHENTICATE_ACCOUNTS"/>
 
-    <!-- Permission required for Google Cloud Messaging -->
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
-    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE"/>
-    <permission android:name="com.example.android.sunshine.app.permission.C2D_MESSAGE"
-        android:protectionLevel="signature"/>
-    <uses-permission android:name="com.example.android.sunshine.app.permission.C2D_MESSAGE"/>
+    <!-- Permissions required to make our UI more friendly -->
+    <uses-permission
+        android:name="android.permission.ACCESS_NETWORK_STATE" />
 
+    <!-- Permissions required for Google Cloud Messaging -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <permission android:name="com.example.android.sunshine.app.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+    <uses-permission android:name="com.example.android.sunshine.app.permission.C2D_MESSAGE" />
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme"
-       >
+        android:supportsRtl="true">
         <activity
             android:name=".MainActivity"
             android:theme="@style/ForecastTheme"
@@ -87,30 +88,33 @@
         </service>
 
         <!-- The Google Cloud Messaging receiver and services -->
-        <receiver android:name="com.google.android.gms.gcm.GcmReceiver"
+        <receiver
+            android:name="com.google.android.gms.gcm.GcmReceiver"
             android:exported="true"
-            android:permission="com.google.android.c2dm.permission.SEND">
+            android:permission="com.google.android.c2dm.permission.SEND" >
             <intent-filter>
-                <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
-                <action android:name="com.google.android.c2dm.intent.REGISTERATION"/>
-                <category android:name="com.example.android.sunshine.app"/>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+                <category android:name="com.example.android.sunshine.app" />
             </intent-filter>
         </receiver>
-        <service android:name="gcm.MyGcmListenerService"
-            android:exported="false">
+        <service
+            android:name=".gcm.MyGcmListenerService"
+            android:exported="false" >
             <intent-filter>
-                <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
             </intent-filter>
         </service>
-        <service android:name="gcm.MyInstanceIDListenerService"
+        <service
+            android:name=".gcm.MyInstanceIDListenerService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.android.gms.iid.InstanceID"/>
             </intent-filter>
         </service>
-        <service android:name=".gcm.RegisterationIntentService"
-            android:exported="false">
-
+        <service
+            android:name=".gcm.RegistrationIntentService"
+            android:exported="false" >
         </service>
     </application>
 
