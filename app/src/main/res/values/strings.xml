@@ -204,4 +204,14 @@
 
     <!-- For shared element transition -->
     <string name="detail_icon_transition_name" translatable="false">TN_DetailIcon</string>
+
+    <string name="pref_current_location_desc">Use my Location</string>
+
+    <!-- Key name for storing location latlong in SharedPreferences -->
+    <string name="pref_location_latitude" translatable="false">loc-latitude</string>
+    <string name="pref_location_longitude" translatable="false">loc-longitude</string>
+
+    <!-- For Google Place API Attributions -->
+    <string name="attribution_text">Powered by Google</string>
+
 </resources>
